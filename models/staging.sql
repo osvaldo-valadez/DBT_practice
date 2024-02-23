@@ -1,3 +1,5 @@
+{{ config(materialized='table') }}
+
 SELECT
   "bill/BillingPeriodStartDate",
   "bill/PayerAccountId",
@@ -22,6 +24,6 @@ SELECT
     "lineItem/ResourceId"
   ) AS "UniqueIdentifier"
 FROM
-  "public”.”staging_feb"
+  "public"."staging_feb"
 WHERE 
     CAST("lineItem/UsageStartDate" AS TIMESTAMP)::date = CURRENT_DATE
